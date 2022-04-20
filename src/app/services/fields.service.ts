@@ -47,6 +47,15 @@ export class FieldsService {
         );
     }
 
+    /** GET fields export as csv file */
+    getFieldsExport(): Observable<Blob> {
+        const url = `${this.url}/export`;
+        return this.http.get(url, { responseType: 'blob'}).pipe(
+            tap(_ => this.log(`fetched fields export`)),
+            catchError(this.handleError<Blob>(`getFieldsExport`))
+        );
+    }
+
     /**
     * Handle Http operation that failed.
     * Let the app continue.

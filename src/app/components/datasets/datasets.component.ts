@@ -8,6 +8,7 @@ import { InsertDataset } from '../../models/insertDataset';
 import { DatasetService } from '../../services/dataset.service';
 import { MessageService } from '../../services/message.service';
 import { InsertDimension } from 'src/app/models/insertDimension';
+import { FieldsService } from 'src/app/services/fields.service';
 
 @Component({
     selector: 'datasets',
@@ -26,7 +27,7 @@ export class DatasetsComponent implements AfterViewInit {
     dataSource: MatTableDataSource<Dataset> = new MatTableDataSource<Dataset>();
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-    constructor(private datasetService: DatasetService, private messageService: MessageService, private formBuilder: FormBuilder) {
+    constructor(private datasetService: DatasetService, private fieldsService: FieldsService, private messageService: MessageService, private formBuilder: FormBuilder) {
         this.datasetForm = this.getForm();
     }
 
@@ -94,6 +95,29 @@ export class DatasetsComponent implements AfterViewInit {
 
     toggleInsertForm() {
         this.insertFormActive = !this.insertFormActive;
+    }
+
+    exportFields() {
+        this.fieldsService.getFieldsExport().subscribe(blob => {
+            console.log(blob);
+            const reader = new FileReader();
+            const file: File = new File([blob], 'export.csv');
+            reader.addEventListener('load', (event: any) => {
+                //this.csv = new ImageSnippet(event.target.result, file);
+
+                let fileUrl = URL.createObjectURL(file);
+                let fileLink = document.createElement('a');
+
+                fileLink.href = fileUrl;
+                fileLink.setAttribute('download', file.name);
+                document.body.appendChild(fileLink)
+
+                fileLink.click();
+            });
+            if (blob) {
+                reader.readAsDataURL(blob);
+            }
+        });
     }
 
     add(dataset: InsertDataset): void {
