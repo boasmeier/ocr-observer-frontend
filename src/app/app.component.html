@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <a class="navbar-brand" routerLink='/datasets'><h1>{{title}}</h1></a>
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse text-center">
+            <ul class="navbar-nav mr-auto">
+                <li id="dataset" class="nav-item">
+                    <a class="nav-link" routerLink='/datasets'>DATASETS</a>
+                </li>
+            </ul>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Second navbar for mobile because of ordering -->
+        <div class="collapse mx-auto text-center mobile-nav" id="navbarResponsive">
+            <ul class="navbar-nav mr-auto">
+                <li id="dataset" class="nav-item">
+                    <a class="nav-link" routerLink='/datasets'>DATASETS</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<router-outlet></router-outlet>

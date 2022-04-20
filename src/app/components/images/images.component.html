@@ -1,0 +1,66 @@
+<div class="container-fluid padding">
+    <div class="row content padding first">
+        <div class="col-lg-6 order-lg-1">
+            <h2>Your Images</h2>
+        </div>
+        <div class="col-lg-6 order-lg-2">
+            <div class="float-end">
+                <button type="button" class="btn btn-primary mr-1" (click)="toggleImageUpload()">Upload new
+                    images</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="imageUploadActive">
+    <image-upload (imageUploadEvent)="handleImageUploadEvent($event)"></image-upload>
+</div>
+
+<div class="padding">
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+            <ng-container matColumnDef="idimage">
+                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <td mat-cell *matCellDef="let image"> {{image.idimage}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef> Name </th>
+                <td mat-cell *matCellDef="let image"> <a routerLink="/images/{{image.idimage}}"> {{image.name}}
+                    </a> </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mimetype">
+                <th mat-header-cell *matHeaderCellDef> Mimetype </th>
+
+                <td mat-cell *matCellDef="let image"> {{image.mimetype}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef> State </th>
+                <td mat-cell *matCellDef="let image"> {{image.status}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+            aria-label="Select page of periodic elements">
+        </mat-paginator>
+    </div>
+</div>
+
+
+<!--
+<ul class="images">
+    <li *ngFor="let image of images">
+        <a routerLink="/images/{{image.idimage}}">
+            <span class="badge">{{image.idimage}}</span> {{image.name}}
+        </a>
+        <button type="button" class="delete" title="delete image"
+  (click)="delete(image)">x</button>
+    </li>
+</ul>
+-->

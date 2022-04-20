@@ -1,0 +1,20 @@
+<div class="padding row justify-content-center dashed">
+    <label class="image-upload-container btn btn-bwm">
+        <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)">
+    </label>
+</div>
+
+
+<div *ngIf="selectedFile" class="img-preview-container">
+
+    <!--
+    <img *ngIf="selectedFile.status === 'ok'" src="{{selectedFile.src}}" />
+    -->
+
+    <div *ngIf="selectedFile.pending" class="img-loading-overlay">
+        <div class="img-spinning-circle"></div>
+    </div>
+
+    <div *ngIf="selectedFile.status === 'ok' && uploadedAndValid" class="alert alert-success"> Image Uploaded Successful!</div>
+    <div *ngIf="selectedFile.status === 'fail'" class="alert alert-danger"> Image Upload Failed!</div>
+</div>

@@ -1,0 +1,35 @@
+<div class="padding">
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-6 order-lg-1">
+                <h1>Image Fields Editor</h1>
+            </div>
+            <div class="col-lg-6 order-lg-2">
+                <div class="float-end">
+                    <button type="button" class="btn btn-danger mr-1" (click)="delete()">Delete </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div *ngIf="imageSnippet" class="row">
+            <div class="col-lg-8 order-lg-1">
+                <h2>{{image.name}}</h2>
+                <img class="annotate-image border" src="{{imageSnippet.src}}" />
+            </div>
+            <div class="col-lg-4 order-lg-2">
+                <h2>Fields</h2>
+                <fields [image]="image"></fields>
+            </div>
+        </div>
+    </div>
+
+    <div class="padding row">
+        <div class="">
+            <button type="button" class="btn btn-secondary float-end" (click)="goBack()">go back</button>
+        </div>
+    </div>
+
+</div>

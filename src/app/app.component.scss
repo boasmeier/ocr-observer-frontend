@@ -1,0 +1,27 @@
+/* AppComponent's private CSS styles */
+h1 {
+    margin-bottom: 0;
+}
+.navbar {
+    padding: .8rem;
+}
+.navbar-nav li {
+    padding-right: 1.2em;
+}
+.nav-link {
+    font-size: 1.1em !important;
+}
+.nav-link:hover {
+    //color: #B2C000 !important;
+    font-weight: 500;
+}
+.nav-item.active a{
+    //color: #B2C000 !important;
+    font-weight: 500;
+}
+a.navbar-brand {
+    display: contents;
+}
+.mobile-nav {
+    display: none;
+}
