@@ -7,5 +7,6 @@ COPY . /app
 RUN npm run build --prod
 
 FROM nginx:alpine
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY --from=build-step /app/dist/ocr-observer-frontend /usr/share/nginx/html
 EXPOSE 80
