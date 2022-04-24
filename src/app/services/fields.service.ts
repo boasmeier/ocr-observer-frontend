@@ -6,12 +6,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { Fields } from '../models/fields';
 import { InsertAnnotation } from '../models/insertAnnotation';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class FieldsService {
-    private url = 'http://localhost:5001/api/v0/fields';
+    private url = environment.baseUrl + '/fields';
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

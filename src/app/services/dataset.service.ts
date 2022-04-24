@@ -7,6 +7,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { MessageService } from './message.service';
 import { Dataset } from '../models/dataset';
 import { InsertDataset } from '../models/insertDataset';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -14,7 +15,7 @@ import { InsertDataset } from '../models/insertDataset';
     providedIn: 'root'
 })
 export class DatasetService {
-    private datasetsUrl = 'http://localhost:5001/api/v0/datasets'
+    private datasetsUrl = environment.baseUrl + '/datasets';
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };

@@ -6,12 +6,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from './message.service';
 import { MyImage } from '../models/image';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ImageService {
-    private imagesUrl = 'http://localhost:5001/api/v0/images'
+    private imagesUrl = environment.baseUrl + '/images';
     httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
