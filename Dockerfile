@@ -7,5 +7,5 @@ COPY . /app
 RUN npm run build --prod
 
 FROM nginx:alpine
-COPY --from=build-step /app/dist/angular-tour-of-heroes /usr/share/nginx/html
+COPY --from=build-step /app/dist/ocr-observer-frontend /usr/share/nginx/html
 EXPOSE 80
