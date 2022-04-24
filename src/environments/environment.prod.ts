@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://ocr-observer-api:5001/api/v0'
+  baseUrl: 'http://localhost:8080/api/v0'
 };
