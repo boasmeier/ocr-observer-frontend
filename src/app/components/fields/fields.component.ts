@@ -20,10 +20,10 @@ export class FieldsComponent implements OnInit {
         private messageService: MessageService, private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.getAnnotations();
+        this.getFields();
     }
 
-    getAnnotations(): void {
+    getFields(): void {
         const idimage = Number(this.route.snapshot.paramMap.get('idimage'));
         this.fieldsService.getFieldsById(this.image.idfields).subscribe(annotation => {
             this.fields = annotation[0];

@@ -16,6 +16,7 @@ import { ImageFieldsEditorComponent } from './components/image-fields-editor/ima
 import { ImageUploadComponent } from './components/image-upload/image-upload.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FieldsComponent } from './components/fields/fields.component';
+import { ImageHistoryComponent } from './components/image-history/image-history.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { FieldsComponent } from './components/fields/fields.component';
         ImageFieldsEditorComponent,
         ImageUploadComponent,
         FieldsComponent,
+        ImageHistoryComponent,
     ],
     imports: [
         BrowserModule,
