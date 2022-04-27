@@ -38,7 +38,7 @@ export class ImagesComponent implements AfterViewInit {
 
     getImages(): void {
         const iddataset = Number(this.route.snapshot.paramMap.get('iddataset'));
-        this.imageService.getImages().subscribe(images => {
+        this.imageService.getImagesWithState().subscribe(images => {
             this.images = images.filter(i => i.iddataset == iddataset);
             this.dataSource = new MatTableDataSource<MyImage>(this.images);
             this.dataSource.paginator = this.paginator;

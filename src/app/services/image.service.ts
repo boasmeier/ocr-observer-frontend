@@ -30,6 +30,15 @@ export class ImageService {
             );
     }
 
+    /** GET images with state from the server */
+    public getImagesWithState(): Observable<MyImage[]> {
+        return this.http.get<MyImage[]>(this.imagesUrl + '/withState')
+            .pipe(
+                tap(_ => this.log('fetched images with state')),
+                catchError(this.handleError<MyImage[]>('getImagesWithState', []))
+            );
+    }
+
     /** GET image by id. Will 404 if id not found */
     public getImage(id: number): Observable<MyImage[]> {
         const url = `${this.imagesUrl}/${id}`;

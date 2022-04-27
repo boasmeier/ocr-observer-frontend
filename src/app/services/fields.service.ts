@@ -5,7 +5,6 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from './message.service';
 import { Fields } from '../models/fields';
-import { InsertAnnotation } from '../models/insertAnnotation';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

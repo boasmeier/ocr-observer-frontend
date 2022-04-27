@@ -6,4 +6,5 @@ export interface MyImage {
     destination: string;
     name: string;
     mimetype: string;
+    state: string;
 }
