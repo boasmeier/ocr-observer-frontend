@@ -15,7 +15,8 @@ import { MessageService } from '../../services/message.service';
 export class FieldsComponent implements OnInit {
     fields!: Fields;
     @Input() image!: MyImage;
-
+    @Output() fieldsUpdateEvent: EventEmitter<string> = new EventEmitter<string>();
+    
     constructor(private fieldsService: FieldsService,
         private messageService: MessageService, private route: ActivatedRoute) { }
 
@@ -32,8 +33,8 @@ export class FieldsComponent implements OnInit {
 
     save(): void {
         const annotation = this.fields;
-        this.fieldsService.updateFields(annotation)
-            .subscribe(() => {
+        this.fieldsService.updateFields(annotation).subscribe(() => {
+                this.fieldsUpdateEvent.emit("Event: Fields updated");
             });
     }
 }

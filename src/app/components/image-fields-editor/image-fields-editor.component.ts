@@ -6,6 +6,7 @@ import { MyImage } from '../../models/image';
 import { ImageSnippet } from '../../models/imageSnippet';
 import { ImageService } from '../../services/image.service';
 import { MessageService } from '../../services/message.service';
+import { Subject } from 'rxjs';
 
 @Component({
     selector: 'image-fields-editor',
@@ -15,6 +16,7 @@ import { MessageService } from '../../services/message.service';
 export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
     public image!: MyImage;
     public imageSnippet!: ImageSnippet;
+    public updateHistoryEvent: Subject<string> = new Subject<string>();
 
     constructor(
         private route: ActivatedRoute,
@@ -61,5 +63,14 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
                 reader.readAsDataURL(blob);
             }
         });
+    }
+
+    emitUpdateHistoryEventToChild(event: string) {
+        this.updateHistoryEvent.next(event);
+    }
+
+    handleFieldsUpdateEvent(event: string) {
+        this.emitUpdateHistoryEventToChild(event);
+        this.messageService.info(`image-fields-editor: Received ${event}`);
     }
 }
