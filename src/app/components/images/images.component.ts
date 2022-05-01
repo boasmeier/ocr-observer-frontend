@@ -42,6 +42,8 @@ export class ImagesComponent implements AfterViewInit {
         this.imageService.getImagesWithState().subscribe(images => {
             this.images = images.filter(i => i.iddataset == iddataset);
             this.initImageIdIterator();
+            // sort by id ascending
+            this.images.sort((i1, i2) => i1.idimage < i2.idimage ? -1 : 1 );
             this.dataSource = new MatTableDataSource<MyImage>(this.images);
             this.dataSource.paginator = this.paginator;
         });
