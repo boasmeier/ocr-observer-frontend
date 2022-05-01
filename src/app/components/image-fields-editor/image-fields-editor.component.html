@@ -32,9 +32,13 @@
                 <image-history [events]="updateHistoryEvent.asObservable()"></image-history>
             </div>
             <div class="col-lg-6 order-lg-2">
-                <button type="button" class="btn btn-secondary float-end" (click)="next()">next</button>
-                <button type="button" class="btn btn-secondary float-end" (click)="goBack()">go back</button>
-                <div *ngIf="displayNoMoreImagesMessage" class="alert alert-success">
+                <div>
+                    <button type="button" class="btn btn-secondary float-end ms-2" (click)="next()">next</button>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-secondary float-end" (click)="goBack()">go back</button>
+                </div>
+                <div *ngIf="displayNoMoreImagesMessage" class="alert alert-success d-flex justify-content-center">
                     <div>No next images in this dataset.</div>
                 </div>
             </div>

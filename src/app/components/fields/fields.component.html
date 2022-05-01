@@ -22,8 +22,18 @@
             <input type="text" id="fields-category" class="form-control" [(ngModel)]="fields.category">
         </div>
 
-        <div class="padding">
-            <button type="button" class="btn btn-secondary" (click)="save()">save</button>
+        <div class="row">
+            <div class="col-lg-8 order-lg-1 padding">
+                <div *ngIf="displayFieldsSuccessfullyUpdatedMessage" class="alert alert-success d-flex justify-content-center">
+                    <div>Sucessfully updated</div>
+                </div>
+            </div>
+            <div class="col-lg-4 order-lg-2">
+                <div class="padding float-end">
+                    <button type="button" class="btn btn-secondary" (click)="save()">save</button>
+                </div>
+            </div>
         </div>
+
     </div>
 </div>

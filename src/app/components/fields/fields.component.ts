@@ -16,6 +16,7 @@ export class FieldsComponent implements OnInit {
     fields!: Fields;
     @Input() image!: MyImage;
     @Output() fieldsUpdateEvent: EventEmitter<string> = new EventEmitter<string>();
+    public displayFieldsSuccessfullyUpdatedMessage: boolean = false;
     
     constructor(private fieldsService: FieldsService,
         private messageService: MessageService, private route: ActivatedRoute) { }
@@ -34,6 +35,8 @@ export class FieldsComponent implements OnInit {
         const annotation = this.fields;
         this.fieldsService.updateFields(annotation).subscribe(() => {
                 this.fieldsUpdateEvent.emit("Event: Fields updated");
+                this.displayFieldsSuccessfullyUpdatedMessage = true;
+                setTimeout(() => this.displayFieldsSuccessfullyUpdatedMessage = false, 1500);
             });
     }
 }
