@@ -36,7 +36,10 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
     }
 
     goBack(): void {
-        this.location.back();
+        // Small hack to properly reload component since we're navigating onto the same component
+        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+            this.location.back();
+        });
     }
 
     next(): void {
