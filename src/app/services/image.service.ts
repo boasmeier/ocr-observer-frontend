@@ -77,6 +77,19 @@ export class ImageService {
         );
     }
 
+    /** POST: add multiple new images to the server */
+    public addMultipleImages(images: Array<File>, iddataset: number): Observable<any> {
+        const formData = new FormData();
+        images.forEach(i => {
+            formData.append('image', i);
+        });
+        formData.append('iddataset', String(iddataset));
+        return this.http.post(this.imagesUrl, formData).pipe(
+            tap(_ => this.log(`added image to dataset id=${iddataset}`)),
+            catchError(this.handleError('addImage'))
+        );
+    }
+
     /**
     * Handle Http operation that failed.
     * Let the app continue.
