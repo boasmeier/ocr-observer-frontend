@@ -6,6 +6,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MyImage } from '../../models/image';
 import { ImageService } from '../../services/image.service';
 import { MessageService } from '../../services/message.service';
+import { ImageIdIterator } from 'src/app/ImageIdIterator';
 
 @Component({
     selector: 'images',
@@ -23,7 +24,7 @@ export class ImagesComponent implements AfterViewInit {
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
     constructor(private imageService: ImageService,
-        private messageService: MessageService, private route: ActivatedRoute,) {
+        private messageService: MessageService, private route: ActivatedRoute, private itr: ImageIdIterator) {
             this.imageUploadActive = false;
     }
 
@@ -40,9 +41,16 @@ export class ImagesComponent implements AfterViewInit {
         const iddataset = Number(this.route.snapshot.paramMap.get('iddataset'));
         this.imageService.getImagesWithState().subscribe(images => {
             this.images = images.filter(i => i.iddataset == iddataset);
+            this.initImageIdIterator();
             this.dataSource = new MatTableDataSource<MyImage>(this.images);
             this.dataSource.paginator = this.paginator;
         });
+    }
+
+    private initImageIdIterator(): void {
+        let ids: Array<number> = [];
+        this.images.forEach(i => ids.push(i.idimage));
+        this.itr.setImageIds(ids);
     }
 
     delete(image: MyImage): void {

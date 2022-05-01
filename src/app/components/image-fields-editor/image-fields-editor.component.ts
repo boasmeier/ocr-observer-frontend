@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { MyImage } from '../../models/image';
@@ -7,6 +7,7 @@ import { ImageSnippet } from '../../models/imageSnippet';
 import { ImageService } from '../../services/image.service';
 import { MessageService } from '../../services/message.service';
 import { Subject } from 'rxjs';
+import { ImageIdIterator } from 'src/app/ImageIdIterator';
 
 @Component({
     selector: 'image-fields-editor',
@@ -17,13 +18,18 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
     public image!: MyImage;
     public imageSnippet!: ImageSnippet;
     public updateHistoryEvent: Subject<string> = new Subject<string>();
+    public displayNoMoreImagesMessage: boolean = false;
 
     constructor(
         private route: ActivatedRoute,
+        private router: Router,
         private imageService: ImageService,
         private location: Location,
-        private messageService: MessageService
-    ) { }
+        private messageService: MessageService,
+        private itr: ImageIdIterator
+    ) { 
+
+    }
 
     ngOnInit(): void {
 
@@ -31,6 +37,22 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
 
     goBack(): void {
         this.location.back();
+    }
+
+    next(): void {
+        if(this.itr.hasNext()) {
+            const id = Number(this.route.snapshot.paramMap.get('idimage'));
+            const nextImageId: number = this.itr.next();
+            const newUrl = this.router.url.replace(id.toString(), nextImageId.toString());
+            // Small hack to properly reload component since we're navigating onto the same component
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                this.router.navigate([newUrl]);
+            });
+        }
+        else {
+            this.displayNoMoreImagesMessage = true;
+            setTimeout(() => this.displayNoMoreImagesMessage = false, 1500);
+        }
     }
 
     delete(): void {
@@ -46,8 +68,11 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
 
     getImage(): void {
         const id = Number(this.route.snapshot.paramMap.get('idimage'));
+        console.log(id);
+        console.log(this.route.snapshot);
         this.imageService.getImage(id).subscribe(image => {
             this.image = image[0];
+            this.itr.setIndex(this.image.idimage);
             this.getImageFile(id);
         });
     }

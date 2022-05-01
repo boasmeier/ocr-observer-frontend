@@ -25,7 +25,6 @@ export class FieldsComponent implements OnInit {
     }
 
     getFields(): void {
-        const idimage = Number(this.route.snapshot.paramMap.get('idimage'));
         this.fieldsService.getFieldsById(this.image.idfields).subscribe(annotation => {
             this.fields = annotation[0];
         });
