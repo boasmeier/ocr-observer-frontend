@@ -26,12 +26,14 @@
         </div>
     </div>
 
-    <div class="padding row">
-        <div class="col-lg-6 order-lg-1">
-            <image-history [events]="updateHistoryEvent.asObservable()"></image-history>
-        </div>
-        <div class="col-lg-6 order-lg-2">
-            <button type="button" class="btn btn-secondary float-end" (click)="goBack()">go back</button>
+    <div class="container-fluid">
+        <div class="padding row">
+            <div class="col-lg-6 order-lg-1">
+                <image-history [events]="updateHistoryEvent.asObservable()"></image-history>
+            </div>
+            <div class="col-lg-6 order-lg-2">
+                <button type="button" class="btn btn-secondary float-end" (click)="goBack()">go back</button>
+            </div>
         </div>
     </div>
 
