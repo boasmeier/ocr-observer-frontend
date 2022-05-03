@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -39,6 +40,7 @@ import { ImageHistoryComponent } from './components/image-history/image-history.
         HttpClientModule,
         MatTableModule,
         MatPaginatorModule,
+        MatProgressSpinnerModule,
         BrowserAnimationsModule
     ],
     providers: [],

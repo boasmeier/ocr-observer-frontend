@@ -15,8 +15,11 @@
 </div>
 
 
-<div *ngIf="uploadPending" class="img-loading-overlay">
-    <div class="img-spinning-circle"></div>
+<div *ngIf="uploadPending || uploadedAndValid">
+    <br>
+</div>
+<div *ngIf="uploadPending" class="img-loading-overlay row justify-content-center">
+    <mat-spinner></mat-spinner>
 </div>
 
 <div *ngIf="uploadedAndValid" class="alert alert-success"> Image upload successful!</div>
