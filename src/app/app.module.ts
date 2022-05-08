@@ -18,6 +18,8 @@ import { ImageUploadComponent } from './components/image-upload/image-upload.com
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FieldsComponent } from './components/fields/fields.component';
 import { ImageHistoryComponent } from './components/image-history/image-history.component';
+import { TasksComponent } from './components/tasks/tasks.component';
+import { TaskDetailComponent } from './components/task-detail/task-detail.component';
 
 @NgModule({
     declarations: [
@@ -31,6 +33,8 @@ import { ImageHistoryComponent } from './components/image-history/image-history.
         ImageUploadComponent,
         FieldsComponent,
         ImageHistoryComponent,
+        TasksComponent,
+        TaskDetailComponent,
     ],
     imports: [
         BrowserModule,

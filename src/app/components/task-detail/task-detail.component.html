@@ -1,0 +1,32 @@
+<div *ngIf="task">
+    <div class="container-fluid padding">
+        <div class="row">
+            <div class="col-lg-6 order-lg-1">
+                <h2>{{task[0].name}} Details</h2>
+            </div>
+            <div class="col-lg-6 order-lg-2">
+                <div class="float-end">
+                    <button type="button" class="btn btn-danger mr-1" (click)="delete()">Delete {{task[0].name}}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div><span>id: </span>{{task[0].idtask}}</div>
+    <div>
+        <label for="task-name">Name: </label>
+        <input type="text" id="task-name" [(ngModel)]="task[0].name" placeholder="name">
+    </div>
+    <div>
+        <label for="task-description">Description: </label>
+        <input id="task-description" [(ngModel)]="task[0].description" placeholder="name">
+    </div>
+
+    <div class="padding">
+        <button type="button" class="btn btn-secondary" (click)="goBack()">go back</button>
+        <button type="button" class="btn btn-secondary" (click)="save()">save</button>
+    </div>
+
+    <datasets></datasets>
+
+</div>
