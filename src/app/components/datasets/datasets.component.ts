@@ -9,6 +9,7 @@ import { DatasetService } from '../../services/dataset.service';
 import { MessageService } from '../../services/message.service';
 import { InsertDimension } from 'src/app/models/insertDimension';
 import { FieldsService } from 'src/app/services/fields.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'datasets',
@@ -23,16 +24,22 @@ export class DatasetsComponent implements AfterViewInit {
     datasetForm: FormGroup;
     submitted = false;
     submittedAndValid = false;
+    isOnTaskDetail: boolean = false;
 
     dataSource: MatTableDataSource<Dataset> = new MatTableDataSource<Dataset>();
     @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-    constructor(private datasetService: DatasetService, private fieldsService: FieldsService, private messageService: MessageService, private formBuilder: FormBuilder) {
+    constructor(private datasetService: DatasetService,
+        private fieldsService: FieldsService,
+        private messageService: MessageService,
+        private formBuilder: FormBuilder,
+        private route: ActivatedRoute) {
         this.datasetForm = this.getForm();
     }
 
     ngAfterViewInit() {
         this.getDatasets();
+        this.isOnTaskDetail = Number(this.route.snapshot.paramMap.get('idtask')) >= 1;
     }
 
     getForm() {
@@ -41,9 +48,7 @@ export class DatasetsComponent implements AfterViewInit {
                 Validators.required,
                 Validators.pattern("^[^0-9`~!@#$%^&*()_+={}|:;“’<,>.?๐฿]*$")]
             ],
-            description: ['', [Validators.max(20)]],
-            width: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
-            height: ['', [Validators.required, Validators.pattern("^[0-9]*$")]]
+            description: ['', [Validators.max(20)]]
         });
     }
 
@@ -68,9 +73,9 @@ export class DatasetsComponent implements AfterViewInit {
 
     parseFormData(data: any) {
         const insertDataset = new InsertDataset(
+            data.idtask,
             data.name,
             data.description,
-            new InsertDimension(data.width, data.height)
         );
         return insertDataset;
     }
@@ -81,8 +86,9 @@ export class DatasetsComponent implements AfterViewInit {
     }
 
     getDatasets(): void {
+        const idtask = Number(this.route.snapshot.paramMap.get('idtask'));
         this.datasetService.getDatasets().subscribe(datasets => {
-            this.datasets = datasets;
+            this.datasets = idtask >= 1 ? datasets.filter(d => d.idtask == idtask) : datasets;
             this.dataSource = new MatTableDataSource<Dataset>(datasets);
             this.dataSource.paginator = this.paginator;
         });
@@ -121,10 +127,11 @@ export class DatasetsComponent implements AfterViewInit {
     }
 
     add(dataset: InsertDataset): void {
+        dataset.idtask = Number(this.route.snapshot.paramMap.get('idtask'));
         dataset.name = dataset.name.trim();
         dataset.description = dataset.description.trim();
         this.datasetService.addDataset(dataset)
-            .subscribe(dataset => {
+            .subscribe(() => {
                 this.getDatasets();
             });
     }

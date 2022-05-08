@@ -3,7 +3,7 @@
         <div class="col-lg-6 order-lg-1">
             <h2>Your Datasets</h2>
         </div>
-        <div class="col-lg-6 order-lg-2">
+        <div *ngIf="isOnTaskDetail" class="col-lg-6 order-lg-2">
             <div class="float-end">
                 <button type="button" class="btn btn-primary mr-1" (click)="toggleInsertForm()">Add new dataset</button>
                 <button type="button" class="btn btn-primary mr-1 ms-2" (click)="exportFields()">Export fields</button>
@@ -29,22 +29,6 @@
                 <div *ngIf="submitted && datasetForm.controls.description.errors" class="alert alert-warning">
                     <div *ngIf="datasetForm.controls.description.errors.max">Message length should not exceed 200
                         characters.</div>
-                </div>
-            </div>
-            <div>
-                <label>Width*</label>
-                <input type="text" formControlName="width" class="form-control" />
-                <div *ngIf="submitted && datasetForm.controls.width.errors" class="alert alert-warning">
-                    <div *ngIf="datasetForm.controls.width.errors.required">Width is required</div>
-                    <div *ngIf="datasetForm.controls.width.errors.pattern">Only numbers are allowed</div>
-                </div>
-            </div>
-            <div>
-                <label>Height*</label>
-                <input type="text" formControlName="height" class="form-control" />
-                <div *ngIf="submitted && datasetForm.controls.height.errors" class="alert alert-warning">
-                    <div *ngIf="datasetForm.controls.height.errors.required">Height is required</div>
-                    <div *ngIf="datasetForm.controls.height.errors.pattern">Only numbers are allowed</div>
                 </div>
             </div>
             <div class="padding">
@@ -85,15 +69,3 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements">
     </mat-paginator>
 </div>
-
-<!--
-<ul class="datasets">
-    <li *ngFor="let dataset of datasets">
-        <a routerLink="/datasets/{{dataset.iddataset}}">
-            <span class="badge">{{dataset.iddataset}}</span> {{dataset.name}}
-        </a>
-        <button type="button" class="delete" title="delete dataset"
-  (click)="delete(dataset)">x</button>
-    </li>
-</ul>
--->

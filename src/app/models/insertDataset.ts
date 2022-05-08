@@ -1,13 +1,11 @@
-import { InsertDimension } from './insertDimension';
-
 export class InsertDataset {
+    idtask: number;
     name: string;
     description: string;
-    dimension: InsertDimension;
 
-    constructor(name: string, description: string, dimension: InsertDimension) {
+    constructor(idtask: number, name: string, description: string) {
+        this.idtask = idtask;
         this.name = name;
         this.description = description;
-        this.dimension = dimension;
     }
 }
