@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { OcrObserverTask } from 'src/app/models/ocrObserverTask';
 import { MessageService } from 'src/app/services/message.service';
 import { TaskService } from 'src/app/services/task.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
     selector: 'task-detail',
@@ -11,13 +13,14 @@ import { TaskService } from 'src/app/services/task.service';
     styleUrls: ['./task-detail.component.scss']
 })
 export class TaskDetailComponent implements OnInit {
-    @Input() task?: OcrObserverTask[];
+    @Input() task!: OcrObserverTask[];
 
     constructor(
         private route: ActivatedRoute,
         private taskService: TaskService,
         private location: Location,
-        private messageService: MessageService
+        private messageService: MessageService,
+        public dialog: MatDialog
     ) {
     }
 
@@ -48,6 +51,24 @@ export class TaskDetailComponent implements OnInit {
         const id = Number(this.route.snapshot.paramMap.get('idtask'));
         this.taskService.deleteTask(id).subscribe(() => {
             this.goBack();
+        });
+    }
+
+    openDeleteDialog(): void {
+        let dialogRef = this.dialog.open(DeleteDialogComponent, {
+            width: '50em',
+            data: { 
+                target: 'task',
+                targetId: this.task[0].idtask,
+                dialogText: 'Deleting this task will also delete all contained datasets, their images and their corresponding fields. Are you sure?'
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Result: ${result}`);
+            if(result) {
+                this.delete();
+            }
         });
     }
 }

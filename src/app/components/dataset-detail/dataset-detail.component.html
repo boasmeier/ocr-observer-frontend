@@ -6,12 +6,13 @@
             </div>
             <div class="col-lg-6 order-lg-2">
                 <div class="float-end">
-                    <button type="button" class="btn btn-danger mr-1" (click)="delete()">Delete {{dataset[0].name}}</button>
+                    <button mat-raised-button class="btn btn-danger mr-1" (click)="openDeleteDialog()">Delete
+                        {{dataset[0].name}}</button>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div><span>id: </span>{{dataset[0].iddataset}}</div>
     <div>
         <label for="dataset-name">Name: </label>

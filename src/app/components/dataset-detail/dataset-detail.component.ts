@@ -1,4 +1,4 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -7,6 +7,8 @@ import { DatasetService } from '../../services/dataset.service';
 import { MessageService } from '../../services/message.service';
 import { AbbreviationPipe } from '../../AbbreviationPipe';
 import { MyImage } from '../../models/image';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 
 
@@ -16,15 +18,16 @@ import { MyImage } from '../../models/image';
     styleUrls: ['./dataset-detail.component.scss']
 })
 export class DatasetDetailComponent implements OnInit {
-    @Input() dataset?: Dataset[];
+    @Input() dataset!: Dataset[];
 
 
     constructor(
         private route: ActivatedRoute,
         private datasetService: DatasetService,
         private location: Location,
-        private messageService: MessageService
-    ) { 
+        private messageService: MessageService,
+        public dialog: MatDialog
+    ) {
     }
 
     ngOnInit(): void {
@@ -54,6 +57,24 @@ export class DatasetDetailComponent implements OnInit {
         const id = Number(this.route.snapshot.paramMap.get('iddataset'));
         this.datasetService.deleteDataset(id).subscribe(() => {
             this.goBack();
+        });
+    }
+
+    openDeleteDialog(): void {
+        let dialogRef = this.dialog.open(DeleteDialogComponent, {
+            width: '50em',
+            data: { 
+                target: 'dataset', 
+                targetId: this.dataset[0].iddataset, 
+                dialogText: 'Deleting this dataset will also delete all contained images and their corresponding fields. Are you sure?' 
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            console.log(`Result: ${result}`);
+            if(result) {
+                this.delete();
+            }
         });
     }
 }

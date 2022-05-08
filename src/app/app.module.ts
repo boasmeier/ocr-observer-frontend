@@ -20,6 +20,8 @@ import { FieldsComponent } from './components/fields/fields.component';
 import { ImageHistoryComponent } from './components/image-history/image-history.component';
 import { TasksComponent } from './components/tasks/tasks.component';
 import { TaskDetailComponent } from './components/task-detail/task-detail.component';
+import { DeleteDialogComponent } from './components/delete-dialog/delete-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
     declarations: [
@@ -35,6 +37,7 @@ import { TaskDetailComponent } from './components/task-detail/task-detail.compon
         ImageHistoryComponent,
         TasksComponent,
         TaskDetailComponent,
+        DeleteDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -42,6 +45,7 @@ import { TaskDetailComponent } from './components/task-detail/task-detail.compon
         ReactiveFormsModule,
         AppRoutingModule,
         HttpClientModule,
+        MatDialogModule,
         MatTableModule,
         MatPaginatorModule,
         MatProgressSpinnerModule,
