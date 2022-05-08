@@ -5,7 +5,8 @@
         </div>
         <div class="col-lg-6 order-lg-2">
             <div class="float-end">
-                <button type="button" class="btn btn-primary mr-1" (click)="toggleImageUpload()">Upload new
+                <button type="button" class="btn btn-primary ms-1" (click)="toggleFilter()">Filter</button>
+                <button type="button" class="btn btn-primary ms-1" (click)="toggleImageUpload()">Upload new
                     images</button>
             </div>
         </div>
@@ -14,6 +15,14 @@
 
 <div *ngIf="imageUploadActive">
     <image-upload (imageUploadEvent)="handleImageUploadEvent($event)"></image-upload>
+    <br>
+</div>
+
+<div *ngIf="filterActive" class="d-flex justify-content-center">
+    <button type="button" id="uploadedFilterButton" class="btn btn-primary ms-1" (click)="toggleUploadedFilter()">Hochgeladen</button>
+    <button type="button" id="processedFilterButton" class="btn btn-primary ms-1" (click)="toggleProcessedFilter()">Erkannt</button>
+    <button type="button" id="approvedFilterButton" class="btn btn-primary ms-1" (click)="toggleApprovedFilter()">Bestaetigt</button>
+    <button type="button" id="exportedFilterButton" class="btn btn-primary ms-1" (click)="toggleExportedFilter()">Exportiert</button>
 </div>
 
 <div class="padding">
@@ -51,16 +60,3 @@
         </mat-paginator>
     </div>
 </div>
-
-
-<!--
-<ul class="images">
-    <li *ngFor="let image of images">
-        <a routerLink="/images/{{image.idimage}}">
-            <span class="badge">{{image.idimage}}</span> {{image.name}}
-        </a>
-        <button type="button" class="delete" title="delete image"
-  (click)="delete(image)">x</button>
-    </li>
-</ul>
--->
