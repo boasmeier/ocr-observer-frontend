@@ -31,4 +31,15 @@ export class ImageIdIterator {
     public hasNext(): boolean {
         return (this.currentIndex+1 in this.imageIds) ? true : false;
     }
+
+    public previous() : number {
+        this.currentIndex--;
+        return this.imageIds[this.currentIndex];
+    }
+
+    public hasPrevious(): boolean {
+        return (this.currentIndex-1 in this.imageIds) ? true : false;
+    }
+
+
 }

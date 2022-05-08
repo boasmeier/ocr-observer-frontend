@@ -36,10 +36,16 @@
                     <button type="button" class="btn btn-secondary float-end ms-2" (click)="next()">next</button>
                 </div>
                 <div>
+                    <button type="button" class="btn btn-secondary float-end ms-2" (click)="previous()">previous</button>
+                </div>
+                <div>
                     <button type="button" class="btn btn-secondary float-end" (click)="goBack()">go back</button>
                 </div>
                 <div *ngIf="displayNoMoreImagesMessage" class="alert alert-success d-flex justify-content-center">
                     <div>No next images in this dataset.</div>
+                </div>
+                <div *ngIf="displayNoPreviousImagesMessage" class="alert alert-success d-flex justify-content-center">
+                    <div>No previous images in this dataset.</div>
                 </div>
             </div>
         </div>

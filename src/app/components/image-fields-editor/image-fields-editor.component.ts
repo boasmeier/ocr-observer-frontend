@@ -19,6 +19,7 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
     public imageSnippet!: ImageSnippet;
     public updateHistoryEvent: Subject<string> = new Subject<string>();
     public displayNoMoreImagesMessage: boolean = false;
+    public displayNoPreviousImagesMessage: boolean = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -37,9 +38,8 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
 
     goBack(): void {
         // Small hack to properly reload component since we're navigating onto the same component
-        this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-            this.location.back();
-        });
+        const url = `/datasets/${this.image.iddataset}`
+        this.router.navigateByUrl(url);
     }
 
     next(): void {
@@ -55,6 +55,22 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
         else {
             this.displayNoMoreImagesMessage = true;
             setTimeout(() => this.displayNoMoreImagesMessage = false, 1500);
+        }
+    }
+
+    previous(): void {
+        if(this.itr.hasPrevious()) {
+            const id = Number(this.route.snapshot.paramMap.get('idimage'));
+            const nextImageId: number = this.itr.previous();
+            const newUrl = this.router.url.replace(id.toString(), nextImageId.toString());
+            // Small hack to properly reload component since we're navigating onto the same component
+            this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                this.router.navigate([newUrl]);
+            });
+        }
+        else {
+            this.displayNoPreviousImagesMessage = true;
+            setTimeout(() => this.displayNoPreviousImagesMessage = false, 1500);
         }
     }
 
