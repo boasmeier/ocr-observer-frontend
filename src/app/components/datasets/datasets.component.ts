@@ -24,7 +24,7 @@ export class DatasetsComponent implements AfterViewInit {
     datasetForm: FormGroup;
     submitted = false;
     submittedAndValid = false;
-    isOnTaskDetail: boolean = false;
+    isOnTaskDetail: boolean;
 
     dataSource: MatTableDataSource<Dataset> = new MatTableDataSource<Dataset>();
     @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -35,11 +35,11 @@ export class DatasetsComponent implements AfterViewInit {
         private formBuilder: FormBuilder,
         private route: ActivatedRoute) {
         this.datasetForm = this.getForm();
+        this.isOnTaskDetail = Number(this.route.snapshot.paramMap.get('idtask')) >= 1;
     }
 
     ngAfterViewInit() {
         this.getDatasets();
-        this.isOnTaskDetail = Number(this.route.snapshot.paramMap.get('idtask')) >= 1;
     }
 
     getForm() {
@@ -89,7 +89,7 @@ export class DatasetsComponent implements AfterViewInit {
         const idtask = Number(this.route.snapshot.paramMap.get('idtask'));
         this.datasetService.getDatasets().subscribe(datasets => {
             this.datasets = idtask >= 1 ? datasets.filter(d => d.idtask == idtask) : datasets;
-            this.dataSource = new MatTableDataSource<Dataset>(datasets);
+            this.dataSource = new MatTableDataSource<Dataset>(this.datasets);
             this.dataSource.paginator = this.paginator;
         });
     }
