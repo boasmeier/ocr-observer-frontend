@@ -1,16 +1,29 @@
-<div class="padding row justify-content-center dashed" (dragenter)="dragenter($event)" (dragover)="dragover($event)" (drop)="drop($event)">
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="dataset-name">Category: </label>
+        <input type="text" id="category" class="form-control" [(ngModel)]="category" name="category">
+        <br>
+    </div>
+</form>
+
+
+<div class="padding row justify-content-center dashed" (dragenter)="dragenter($event)" (dragover)="dragover($event)"
+    (drop)="drop($event)">
     Drag and drop file here or
     <label class="image-upload-container btn btn-bwm">
         <input type="button" value="Browse for file" onclick="document.getElementById('fileUploadButton').click();">
-        <input #imageInput id="fileUploadButton" type="file" accept="image/*" (change)="processFile(imageInput)" style="display:none">
+        <input #imageInput id="fileUploadButton" type="file" accept="image/*" (change)="processFile(imageInput)"
+            style="display:none">
     </label>
 </div>
 <br>
-<div class="padding row justify-content-center dashed" (dragenter)="dragenter($event)" (dragover)="dragover($event)" (drop)="drop($event)">
+<div class="padding row justify-content-center dashed" (dragenter)="dragenter($event)" (dragover)="dragover($event)"
+    (drop)="drop($event)">
     Drag and drop folder here or
     <label class="image-upload-container btn btn-bwm">
         <input type="button" value="Browse for folder" onclick="document.getElementById('folderUploadButton').click();">
-        <input #folderInput id="folderUploadButton" type="file" (change)="processFolder(folderInput.files)" style="display:none" webkitDirectory>
+        <input #folderInput id="folderUploadButton" type="file" (change)="processFolder(folderInput.files)"
+            style="display:none" webkitDirectory>
     </label>
 </div>
 

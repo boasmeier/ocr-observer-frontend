@@ -67,10 +67,11 @@ export class ImageService {
     }
 
     /** POST: add a new image to the server */
-    public addImage(image: File, iddataset: number): Observable<any> {
+    public addImage(image: File, iddataset: number, category: string): Observable<any> {
         const formData = new FormData();
         formData.append('image', image);
         formData.append('iddataset', String(iddataset));
+        formData.append('category', category);
         return this.http.post(this.imagesUrl, formData).pipe(
             tap(_ => this.log(`added image to dataset id=${iddataset}`)),
             catchError(this.handleError('addImage'))
@@ -78,12 +79,13 @@ export class ImageService {
     }
 
     /** POST: add multiple new images to the server */
-    public addMultipleImages(images: Array<File>, iddataset: number): Observable<any> {
+    public addMultipleImages(images: Array<File>, iddataset: number, category: string): Observable<any> {
         const formData = new FormData();
         images.forEach(i => {
             formData.append('image', i);
         });
         formData.append('iddataset', String(iddataset));
+        formData.append('category', category);
         return this.http.post(this.imagesUrl, formData).pipe(
             tap(_ => this.log(`added image to dataset id=${iddataset}`)),
             catchError(this.handleError('addImage'))

@@ -1,4 +1,4 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ImageService } from '../../services/image.service'
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
@@ -14,6 +14,7 @@ export class ImageUploadComponent implements OnInit {
     public uploadedAndValid: boolean = false;
     public uploadPending: boolean = false;
     public uploadFailed: boolean = false;
+    @Input() category: string = "";
 
     @Output() imageUploadEvent: EventEmitter<string> = new EventEmitter<string>();
 
@@ -103,12 +104,11 @@ export class ImageUploadComponent implements OnInit {
         });
     }
 
-
     processFile(imageInput: any) {
         const file: File = !(imageInput instanceof File) ? imageInput.files[0] : imageInput;
         const iddataset = Number(this.route.snapshot.paramMap.get('iddataset'));
 
-        this.imageService.addImage(file, iddataset).subscribe(
+        this.imageService.addImage(file, iddataset, this.category).subscribe(
             (res) => {
                 this.onSuccess();
             },
@@ -129,7 +129,7 @@ export class ImageUploadComponent implements OnInit {
             console.log(file)
         };
 
-        this.imageService.addMultipleImages(fileArray, iddataset).subscribe(
+        this.imageService.addMultipleImages(fileArray, iddataset, this.category).subscribe(
             (res) => {
                 this.onSuccess();
             },
