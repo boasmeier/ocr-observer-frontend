@@ -15,11 +15,11 @@
     <div><span>id: </span>{{dataset[0].iddataset}}</div>
     <div>
         <label for="dataset-name">Name: </label>
-        <input type="text" id="dataset-name" [(ngModel)]="dataset[0].name" placeholder="name">
+        <input type="text" id="dataset-name" class="form-control" [(ngModel)]="dataset[0].name" placeholder="name">
     </div>
     <div>
         <label for="dataset-description">Description: </label>
-        <input id="dataset-description" [(ngModel)]="dataset[0].description" placeholder="name">
+        <input id="dataset-description" class="form-control" [(ngModel)]="dataset[0].description" placeholder="name">
     </div>
 
     <div class="padding">

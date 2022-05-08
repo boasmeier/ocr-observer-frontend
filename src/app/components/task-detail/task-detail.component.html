@@ -15,11 +15,11 @@
     <div><span>id: </span>{{task[0].idtask}}</div>
     <div>
         <label for="task-name">Name: </label>
-        <input type="text" id="task-name" [(ngModel)]="task[0].name" placeholder="name">
+        <input type="text" id="task-name" class="form-control" [(ngModel)]="task[0].name" placeholder="name">
     </div>
     <div>
         <label for="task-description">Description: </label>
-        <input id="task-description" [(ngModel)]="task[0].description" placeholder="name">
+        <input id="task-description" class="form-control" [(ngModel)]="task[0].description" placeholder="name">
     </div>
 
     <div class="padding">

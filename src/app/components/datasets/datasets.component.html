@@ -59,7 +59,7 @@
         <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef> Description </th>
             
-            <td mat-cell *matCellDef="let dataset"> {{dataset.description | abbreviate: 45}} </td>
+            <td mat-cell *matCellDef="let dataset"> {{dataset.description}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
