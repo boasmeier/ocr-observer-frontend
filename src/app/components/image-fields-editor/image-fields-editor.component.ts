@@ -37,7 +37,6 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
     }
 
     goBack(): void {
-        // Small hack to properly reload component since we're navigating onto the same component
         const url = `/datasets/${this.image.iddataset}`
         this.router.navigateByUrl(url);
     }
@@ -87,8 +86,6 @@ export class ImageFieldsEditorComponent implements OnInit, AfterViewInit {
 
     getImage(): void {
         const id = Number(this.route.snapshot.paramMap.get('idimage'));
-        console.log(id);
-        console.log(this.route.snapshot);
         this.imageService.getImage(id).subscribe(image => {
             this.image = image[0];
             this.itr.setIndex(this.image.idimage);
