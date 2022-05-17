@@ -2,17 +2,29 @@
 h1 {
     margin-bottom: 0;
 }
+.logo {
+    height: 7em;
+}
 .navbar {
+    background-color: #B2C000 !important;
     padding: .8rem;
+}
+.navbar h1 {
+    margin-bottom: 0.2em;
+    font-size: 2em !important;
+}
+.navbar h1, h2, h3, h4, h5, h6 {
+    color: #fff;
 }
 .navbar-nav li {
     padding-right: 1.2em;
 }
 .nav-link {
-    font-size: 1.1em !important;
+    color: #fff !important;
+    font-size: 1.5em !important;
 }
 .nav-link:hover {
-    //color: #B2C000 !important;
+    color: #000 !important;
     font-weight: 500;
 }
 .nav-item.active a{
