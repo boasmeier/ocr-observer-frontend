@@ -58,9 +58,9 @@ export class TaskDetailComponent implements OnInit {
         let dialogRef = this.dialog.open(DeleteDialogComponent, {
             width: '50em',
             data: { 
-                target: 'task',
+                target: 'Auftrag',
                 targetId: this.task[0].idtask,
-                dialogText: 'Deleting this task will also delete all contained datasets, their images and their corresponding fields. Are you sure?'
+                dialogText: 'Löschen dieses Auftrags wird auch alle beinhalteten Datensätze, deren Bilder und entspechende Felder löschen. Bist du sicher?'
             }
         });
 

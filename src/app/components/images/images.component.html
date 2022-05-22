@@ -1,13 +1,12 @@
 <div class="container-fluid padding">
     <div class="row content padding first">
         <div class="col-lg-6 order-lg-1">
-            <h2>Your Images</h2>
+            <h2>Deine Bilder</h2>
         </div>
         <div class="col-lg-6 order-lg-2">
             <div class="float-end">
                 <button type="button" class="btn btn-primary ms-2" (click)="toggleFilter()">Filter</button>
-                <button type="button" class="btn btn-primary ms-2" (click)="toggleImageUpload()">Upload new
-                    images</button>
+                <button type="button" class="btn btn-primary ms-2" (click)="toggleImageUpload()">Neue Bilder hochladen</button>
             </div>
         </div>
     </div>
@@ -21,7 +20,7 @@
 <div *ngIf="filterActive" class="d-flex justify-content-center">
     <button type="button" id="uploadedFilterButton" class="btn btn-primary ms-2" (click)="toggleUploadedFilter()">Hochgeladen</button>
     <button type="button" id="processedFilterButton" class="btn btn-primary ms-2" (click)="toggleProcessedFilter()">Erkannt</button>
-    <button type="button" id="approvedFilterButton" class="btn btn-primary ms-2" (click)="toggleApprovedFilter()">Bestaetigt</button>
+    <button type="button" id="approvedFilterButton" class="btn btn-primary ms-2" (click)="toggleApprovedFilter()">Bestätigt</button>
     <button type="button" id="exportedFilterButton" class="btn btn-primary ms-2" (click)="toggleExportedFilter()">Exportiert</button>
 </div>
 
@@ -30,7 +29,7 @@
         <table mat-table [dataSource]="dataSource">
 
             <ng-container matColumnDef="idimage">
-                <th mat-header-cell *matHeaderCellDef> No. </th>
+                <th mat-header-cell *matHeaderCellDef> ID. </th>
                 <td mat-cell *matCellDef="let image"> {{image.idimage}} </td>
             </ng-container>
 
@@ -47,7 +46,7 @@
             </ng-container>
 
             <ng-container matColumnDef="status">
-                <th mat-header-cell *matHeaderCellDef> State </th>
+                <th mat-header-cell *matHeaderCellDef> Status </th>
                 <td mat-cell *matCellDef="let image"> {{image.state}} </td>
             </ng-container>
 

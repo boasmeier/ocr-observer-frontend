@@ -64,9 +64,9 @@ export class DatasetDetailComponent implements OnInit {
         let dialogRef = this.dialog.open(DeleteDialogComponent, {
             width: '50em',
             data: { 
-                target: 'dataset', 
+                target: 'Datensatz', 
                 targetId: this.dataset[0].iddataset, 
-                dialogText: 'Deleting this dataset will also delete all contained images and their corresponding fields. Are you sure?' 
+                dialogText: 'Löschen dieses Datensatzes wird auch alle beinhalteten Bilder und deren Felder löschen. Bist du sicher?' 
             }
         });
 

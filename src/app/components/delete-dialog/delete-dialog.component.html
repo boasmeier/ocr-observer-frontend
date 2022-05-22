@@ -1,7 +1,7 @@
-<h2 mat-dialog-title>Delete {{data.target}} with id {{data.targetId}}</h2>
+<h2 mat-dialog-title>Lösche {{data.target}} mit id {{data.targetId}}</h2>
 <mat-dialog-content>{{data.dialogText}}</mat-dialog-content>
 <mat-dialog-actions>
-    <button mat-button mat-dialog-close class="btn btn-secondary">Cancel</button>
+    <button mat-button mat-dialog-close class="btn btn-secondary">Abbrechen</button>
     <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-    <button mat-button class="btn btn-danger ms-3" [mat-dialog-close]="true">Yes, delete</button>
+    <button mat-button class="btn btn-danger ms-3" [mat-dialog-close]="true">Ja, löschen</button>
 </mat-dialog-actions>

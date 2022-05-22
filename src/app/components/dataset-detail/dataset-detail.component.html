@@ -6,7 +6,7 @@
             </div>
             <div class="col-lg-6 order-lg-2">
                 <div class="float-end">
-                    <button mat-raised-button class="btn btn-danger mr-1" (click)="openDeleteDialog()">Delete
+                    <button mat-raised-button class="btn btn-danger mr-1" (click)="openDeleteDialog()">Lösche
                         {{dataset[0].name}}</button>
                 </div>
             </div>
@@ -19,13 +19,13 @@
         <input type="text" id="dataset-name" class="form-control" [(ngModel)]="dataset[0].name" placeholder="name">
     </div>
     <div>
-        <label for="dataset-description">Description: </label>
+        <label for="dataset-description">Beschreibung: </label>
         <input id="dataset-description" class="form-control" [(ngModel)]="dataset[0].description" placeholder="name">
     </div>
 
     <div class="padding">
-        <button type="button" class="btn btn-secondary" (click)="goBack()">go back</button>
-        <button type="button" class="btn btn-primary ms-2" (click)="save()">save</button>
+        <button type="button" class="btn btn-secondary" (click)="goBack()">zurück</button>
+        <button type="button" class="btn btn-primary ms-2" (click)="save()">speichern</button>
     </div>
 
     <images></images>

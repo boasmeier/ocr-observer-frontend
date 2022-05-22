@@ -56,8 +56,12 @@ export class ImagesComponent implements AfterViewInit {
     }
 
     private initMatPaginator(): void {
+        this.paginator._intl.itemsPerPageLabel = 'Items pro Seite'
+        this.paginator._intl.nextPageLabel = 'Nächste'
+        this.paginator._intl.previousPageLabel = 'Vorherige'
         this.dataSource = new MatTableDataSource<MyImage>(this.images);
         this.dataSource.paginator = this.paginator;
+        
     }
 
     private initImageIdIterator(): void {

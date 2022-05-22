@@ -89,9 +89,16 @@ export class DatasetsComponent implements AfterViewInit {
         const idtask = Number(this.route.snapshot.paramMap.get('idtask'));
         this.datasetService.getDatasets().subscribe(datasets => {
             this.datasets = idtask >= 1 ? datasets.filter(d => d.idtask == idtask) : datasets;
-            this.dataSource = new MatTableDataSource<Dataset>(this.datasets);
-            this.dataSource.paginator = this.paginator;
+            this.initMatPaginator();
         });
+    }
+
+    private initMatPaginator() {
+        this.paginator._intl.itemsPerPageLabel = 'Items pro Seite';
+        this.paginator._intl.nextPageLabel = 'Nächste';
+        this.paginator._intl.previousPageLabel = 'Vorherige';
+        this.dataSource = new MatTableDataSource<Dataset>(this.datasets);
+        this.dataSource.paginator = this.paginator;
     }
 
     delete(dataset: Dataset): void {

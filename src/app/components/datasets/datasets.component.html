@@ -1,12 +1,12 @@
 <div class="container-fluid padding">
     <div class="row content padding first">
         <div class="col-lg-6 order-lg-1">
-            <h2>Your Datasets</h2>
+            <h2>Deine Datensätze</h2>
         </div>
         <div *ngIf="isOnTaskDetail" class="col-lg-6 order-lg-2">
             <div class="float-end">
-                <button type="button" class="btn btn-primary mr-1" (click)="toggleInsertForm()">Add new dataset</button>
-                <button type="button" class="btn btn-primary mr-1 ms-2" (click)="exportFields()">Export fields</button>
+                <button type="button" class="btn btn-primary mr-1" (click)="toggleInsertForm()">Neuer Datensatz hinzufügen</button>
+                <button type="button" class="btn btn-primary mr-1 ms-2" (click)="exportFields()">Felder exportieren</button>
             </div>
         </div>
     </div>
@@ -19,34 +19,33 @@
                 <label>Name*</label>
                 <input type="text" formControlName="name" class="form-control" />
                 <div *ngIf="submitted && datasetForm.controls.name.errors" class="alert alert-warning">
-                    <div *ngIf="datasetForm.controls.name.errors.required">Name is required</div>
-                    <div *ngIf="datasetForm.controls.name.errors.pattern">No numbers allowed</div>
+                    <div *ngIf="datasetForm.controls.name.errors.required">Name ist pflicht</div>
+                    <div *ngIf="datasetForm.controls.name.errors.pattern">Zahlen nicht erlaubt</div>
                 </div>
             </div>
             <div>
-                <label>Description</label>
+                <label>Beschreibung</label>
                 <input type="text" formControlName="description" class="form-control" />
                 <div *ngIf="submitted && datasetForm.controls.description.errors" class="alert alert-warning">
-                    <div *ngIf="datasetForm.controls.description.errors.max">Message length should not exceed 200
-                        characters.</div>
+                    <div *ngIf="datasetForm.controls.description.errors.max">Nachricht darf nicht grösser als 200 Zeichen sein.</div>
                 </div>
             </div>
             <div class="padding">
-                <button class="btn btn-secondary mr-1">Submit</button>
+                <button class="btn btn-secondary mr-1">Bestätigen</button>
             </div>
         </form>
     </div>
 </div>
 
 <div *ngIf="submittedAndValid" class="alert alert-success">
-    <div>Dataset added!</div>
+    <div>Datensatz erfolgreich hinzugefügt!</div>
 </div>
 
 <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
         <ng-container matColumnDef="iddataset">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <th mat-header-cell *matHeaderCellDef> ID. </th>
             <td mat-cell *matCellDef="let dataset"> {{dataset.iddataset}} </td>
         </ng-container>
 
@@ -57,7 +56,7 @@
         </ng-container>
 
         <ng-container matColumnDef="description">
-            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <th mat-header-cell *matHeaderCellDef> Beschreibung </th>
             
             <td mat-cell *matCellDef="let dataset"> {{dataset.description}} </td>
         </ng-container>

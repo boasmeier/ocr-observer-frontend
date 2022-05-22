@@ -1,36 +1,36 @@
 <div *ngIf="fields">
     <div class="padding">
-        <div><span>fields id: </span>{{fields.idfields}}</div>
+        <div><span>felder id: </span>{{fields.idfields}}</div>
         <div>
-            <label for="fields-signature">Signature: </label>
+            <label for="fields-signature">Signatur: </label>
             <input type="text" id="fields-signature" class="form-control" [(ngModel)]="fields.signature">
         </div>
         <div>
-            <label for="fields-author">Author: </label>
+            <label for="fields-author">Autor: </label>
             <input type="text" id="fields-author" class="form-control" [(ngModel)]="fields.author">
         </div>
         <div>
-            <label for="fields-title">Title: </label>
+            <label for="fields-title">Titel: </label>
             <input type="text" id="fields-title" class="form-control" [(ngModel)]="fields.title">
         </div>
         <div>
-            <label for="fields-comment">Comment: </label>
+            <label for="fields-comment">Kommentar: </label>
             <input type="text" id="fields-comment" class="form-control" [(ngModel)]="fields.comment">
         </div>
         <div>
-            <label for="fields-category">Category: </label>
+            <label for="fields-category">Kategorie: </label>
             <input type="text" id="fields-category" class="form-control" [(ngModel)]="fields.category">
         </div>
 
         <div class="row">
             <div class="col-lg-8 order-lg-1 padding">
                 <div *ngIf="displayFieldsSuccessfullyUpdatedMessage" class="alert alert-success d-flex justify-content-center">
-                    <div>Sucessfully updated</div>
+                    <div>Erfolgreich geändert</div>
                 </div>
             </div>
             <div class="col-lg-4 order-lg-2">
                 <div class="padding float-end">
-                    <button type="button" class="btn btn-primary" (click)="save()">save</button>
+                    <button type="button" class="btn btn-primary" (click)="save()">speichern</button>
                 </div>
             </div>
         </div>

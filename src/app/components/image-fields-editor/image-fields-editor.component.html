@@ -3,11 +3,11 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-6 order-lg-1">
-                <h2>Image Fields Editor</h2>
+                <h2>Bild Felder Editor</h2>
             </div>
             <div class="col-lg-6 order-lg-2">
                 <div class="float-end">
-                    <button type="button" class="btn btn-danger mr-1" (click)="delete()">Delete </button>
+                    <button type="button" class="btn btn-danger mr-1" (click)="delete()">Löschen</button>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
                 <img class="annotate-image border" src="{{imageSnippet.src}}" />
             </div>
             <div class="col-lg-6 order-lg-2">
-                <h2>Fields</h2>
+                <h2>Felder</h2>
                 <fields [image]="image" (fieldsUpdateEvent)="handleFieldsUpdateEvent($event)"></fields>
             </div>
         </div>
@@ -33,19 +33,19 @@
             </div>
             <div class="col-lg-6 order-lg-2">
                 <div>
-                    <button type="button" class="btn btn-primary float-end ms-2" (click)="next()">next</button>
+                    <button type="button" class="btn btn-primary float-end ms-2" (click)="next()">nächstes</button>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary float-end ms-2" (click)="previous()">previous</button>
+                    <button type="button" class="btn btn-primary float-end ms-2" (click)="previous()">vorheriges</button>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-secondary float-end" (click)="goBack()">go back</button>
+                    <button type="button" class="btn btn-secondary float-end" (click)="goBack()">zurück</button>
                 </div>
                 <div *ngIf="displayNoMoreImagesMessage" class="alert alert-success d-flex justify-content-center">
-                    <div>No next images in this dataset.</div>
+                    <div>Keine weiteren Bilder in diesem Datensatz.</div>
                 </div>
                 <div *ngIf="displayNoPreviousImagesMessage" class="alert alert-success d-flex justify-content-center">
-                    <div>No previous images in this dataset.</div>
+                    <div>Keine vorherigen Bilder in diesem Datensatz.</div>
                 </div>
             </div>
         </div>
