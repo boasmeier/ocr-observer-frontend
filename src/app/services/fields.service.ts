@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
@@ -48,9 +48,11 @@ export class FieldsService {
     }
 
     /** GET fields export as csv file */
-    getFieldsExport(): Observable<Blob> {
+    getFieldsExport(idtask: number): Observable<Blob> {
+        const params = new HttpParams()
+            .set('idtask', idtask);
         const url = `${this.url}/export`;
-        return this.http.get(url, { responseType: 'blob'}).pipe(
+        return this.http.get(url, { params, responseType: 'blob'}).pipe(
             tap(_ => this.log(`fetched fields export`)),
             catchError(this.handleError<Blob>(`getFieldsExport`))
         );

@@ -111,7 +111,8 @@ export class DatasetsComponent implements AfterViewInit {
     }
 
     exportFields() {
-        this.fieldsService.getFieldsExport().subscribe(blob => {
+        const idtask = Number(this.route.snapshot.paramMap.get('idtask'));
+        this.fieldsService.getFieldsExport(idtask).subscribe(blob => {
             console.log(blob);
             const reader = new FileReader();
             const file: File = new File([blob], 'export.csv');
