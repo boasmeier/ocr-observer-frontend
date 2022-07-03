@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OcrObserverTask } from 'src/app/models/ocrObserverTask';
 import { MessageService } from 'src/app/services/message.service';
 import { TaskService } from 'src/app/services/task.service';
@@ -18,6 +18,7 @@ export class TaskDetailComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private taskService: TaskService,
+        private router: Router,
         private location: Location,
         private messageService: MessageService,
         public dialog: MatDialog
@@ -37,7 +38,8 @@ export class TaskDetailComponent implements OnInit {
     }
 
     goBack(): void {
-        this.location.back();
+        const url = `/tasks`
+        this.router.navigateByUrl(url);
     }
 
     save(): void {

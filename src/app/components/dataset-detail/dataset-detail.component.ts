@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 
 import { Dataset } from '../../models/dataset';
@@ -11,7 +11,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 
-
 @Component({
     selector: 'dataset-detail',
     templateUrl: './dataset-detail.component.html',
@@ -20,10 +19,10 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 export class DatasetDetailComponent implements OnInit {
     @Input() dataset!: Dataset[];
 
-
     constructor(
         private route: ActivatedRoute,
         private datasetService: DatasetService,
+        private router: Router,
         private location: Location,
         private messageService: MessageService,
         public dialog: MatDialog
@@ -43,7 +42,8 @@ export class DatasetDetailComponent implements OnInit {
     }
 
     goBack(): void {
-        this.location.back();
+        const url = `/tasks/${this.dataset[0].idtask}`
+        this.router.navigateByUrl(url);
     }
 
     save(): void {
@@ -63,16 +63,16 @@ export class DatasetDetailComponent implements OnInit {
     openDeleteDialog(): void {
         let dialogRef = this.dialog.open(DeleteDialogComponent, {
             width: '50em',
-            data: { 
-                target: 'Datensatz', 
-                targetId: this.dataset[0].iddataset, 
-                dialogText: 'Löschen dieses Datensatzes wird auch alle beinhalteten Bilder und deren Felder löschen. Bist du sicher?' 
+            data: {
+                target: 'Datensatz',
+                targetId: this.dataset[0].iddataset,
+                dialogText: 'Löschen dieses Datensatzes wird auch alle beinhalteten Bilder und deren Felder löschen. Bist du sicher?'
             }
         });
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(`Result: ${result}`);
-            if(result) {
+            if (result) {
                 this.delete();
             }
         });
